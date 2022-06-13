@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from "../components/Header/Header"
 ---
 
 <Layout title="Quoke / a few quotations">
   <main>
+    <Header client:idle />
     <h1>Welcome to <span class="text-gradient">Quoke</span></h1>
     <!-- <p class="instructions"><strong>Your first mission:</strong> tweak this message to try our hot module reloading.
       Check the <code>src/pages</code> directory!</p>
