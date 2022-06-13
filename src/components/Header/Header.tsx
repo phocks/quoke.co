@@ -1,7 +1,12 @@
 import React from "react";
+import styles from "./styles.module.scss";
 
 const Header = () => {
-  return <div onClick={() => console.log("hello")}>Hello</div>;
+  return (
+    <div className={styles.class1} onClick={() => console.log("hello")}>
+      Hello!
+    </div>
+  );
 };
 
 export default Header;
