@@ -12,7 +12,7 @@ specifiers:
 
 devDependencies:
   '@astrojs/react': 0.1.3_6j5eyi3us3liopewjenwniphpy
-  '@astrojs/svelte': 0.1.4_fjedswe34euijnj6cycypb24vy
+  '@astrojs/svelte': 0.1.4_5c5iuoroi4mk3lqijdwmahnn24
   '@babel/core': 7.18.2
   astro: 1.0.0-beta.44_sass@1.52.3
   react: 18.1.0
@@ -128,7 +128,7 @@ packages:
       - typescript
     dev: true
 
-  /@astrojs/svelte/0.1.4_fjedswe34euijnj6cycypb24vy:
+  /@astrojs/svelte/0.1.4_5c5iuoroi4mk3lqijdwmahnn24:
     resolution: {integrity: sha512-5+E11G0OUrhcSjbZY3/0YyMbvCIw0M//vtnQDSTxTjd9O6idNwTjoYQr5udV69jfjcUqwZMtFFth77dkNPuepg==}
     engines: {node: ^14.15.0 || >=16.0.0}
     peerDependencies:
@@ -137,7 +137,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.49_svelte@3.48.0+vite@2.9.12
       postcss-load-config: 3.1.4
       svelte: 3.48.0
-      svelte-preprocess: 4.10.7_adghjou3uysjmgeqqzax4bhboe
+      svelte-preprocess: 4.10.7_ldmtx3kgmziidgtq4uyfx3jnw4
       vite: 2.9.12_sass@1.52.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -3454,7 +3454,7 @@ packages:
       svelte: 3.48.0
     dev: true
 
-  /svelte-preprocess/4.10.7_adghjou3uysjmgeqqzax4bhboe:
+  /svelte-preprocess/4.10.7_ldmtx3kgmziidgtq4uyfx3jnw4:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -3505,6 +3505,7 @@ packages:
       sorcery: 0.10.0
       strip-indent: 3.0.0
       svelte: 3.48.0
+      typescript: 4.6.4
     dev: true
 
   /svelte/3.48.0:
