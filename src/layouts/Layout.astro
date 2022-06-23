@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header"
+import Title from "../components/Title/Title.svelte"
 import Footer from "../components/Footer/Footer.svelte"
 
 export interface Props {
@@ -21,7 +21,7 @@ const { content } = Astro.props;
 </head>
 
 <body>
-  <Header client:idle />
+  <Title client:idle />
   <slot />
   <Footer client:visible />
 </body>
@@ -47,8 +47,6 @@ const { content } = Astro.props;
 
   body {
     margin: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   :global(h1) {
