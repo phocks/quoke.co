@@ -3,16 +3,17 @@
 </script>
 
 <div class="root">
-  <h1>Hello from Quoke.</h1>
+  <div class="square">
+    <h1>Hello from Quoke.</h1>
+  </div>
   <slot />
 </div>
 
 <style lang="scss">
   .root {
-    background-color: antiquewhite;
     min-height: 10em;
     margin: 0;
-    padding: 1rem;
+    padding: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,5 +21,11 @@
 
   h1 {
     color: #222;
+  }
+
+  .square {
+    padding: 1rem;
+    max-width: 400px;
+    background-color: antiquewhite;
   }
 </style>
