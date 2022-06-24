@@ -6,7 +6,7 @@
   <div class="square">
     <h1>Hello from Quoke.</h1>
   </div>
-  <slot />
+  <slot></slot> 
 </div>
 
 <style lang="scss">
