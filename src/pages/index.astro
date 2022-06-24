@@ -1,11 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+// import { parse } from 'node-html-parser';
+const posts = await Astro.glob('../components/quotes/**/*.md');
+console.log(posts)
+
+
 ---
 
 <Layout title="Quoke / a few quotations">
   <main>
 
 
+    {posts.map(async post => (<Fragment>
+      <post.Content />
+      <p>&mdash; {post.frontmatter.author}</p>
+    </Fragment>
+    ))}
 
   </main>
 </Layout>
