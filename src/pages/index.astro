@@ -1,20 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { parse } from 'node-html-parser';
-const posts = await Astro.glob('./quotes/**/*.md');
+import Main from '../layouts/Main.astro';
+
+
+
+interface Frontmatter {
+  dateAdded?: string;
+  author?: string;
+  source?: string;
+  text?: string;
+}
+
+
+const posts = await Astro.glob<Frontmatter>('./quotes/**/*.md');
+
+for (const p of posts) {
+  console.log(p);
+}
 ---
 
-<Layout title="Quoke / a few quotations">
-  <main>
+<Main title="Quoke / a few quotations">
 
-    {posts.map(async post => (<Fragment>
-      <post.Content />
-      <p>&mdash; {post.frontmatter.author}</p>
-    </Fragment>
-    ))}
 
-  </main>
-</Layout>
+  {posts.map(post => (<Fragment>
+    <blockquote>{post.frontmatter.text}</blockquote>
+    <p>&mdash; {post.frontmatter.author}</p>
+  </Fragment>
+  ))}
+
+
+</Main>
 
 <style>
   :root {
