@@ -1,8 +1,6 @@
 ---
 import Main from '../layouts/Main.astro';
 
-
-
 interface Frontmatter {
   dateAdded?: string;
   author?: string;
@@ -10,24 +8,16 @@ interface Frontmatter {
   text?: string;
 }
 
-
 const posts = await Astro.glob<Frontmatter>('./quotes/**/*.md');
-
-for (const p of posts) {
-  console.log(p);
-}
 ---
 
 <Main title="Quoke / a few quotations">
-
-
-  {posts.map(post => (<Fragment>
-    <blockquote>{post.frontmatter.text}</blockquote>
-    <p>&mdash; {post.frontmatter.author}</p>
+  {posts.map(post => (
+  <Fragment>
+    <blockquote>{post.frontmatter.text} <p>&mdash; {post.frontmatter.author}</p></blockquote>
+    
   </Fragment>
   ))}
-
-
 </Main>
 
 <style>
