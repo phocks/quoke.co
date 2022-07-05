@@ -1,14 +1,12 @@
 ---
+// Type imports
+import type { QuoteFrontmatter } from '@lib/types';
+
+// Layout imports
 import Main from '../layouts/Main.astro';
 
-interface Frontmatter {
-  dateAdded?: string;
-  author?: string;
-  source?: string;
-  text?: string;
-}
 
-const posts = await Astro.glob<Frontmatter>('./quotes/**/*.md');
+const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 ---
 
 <Main title="Quoke / a few quotations">
