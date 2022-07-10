@@ -10,12 +10,15 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 ---
 
 <Main title="Quoke / a few quotations">
-  {posts.map(post => (
-  <Fragment>
-    <blockquote>{post.frontmatter.text} <p>&mdash; {post.frontmatter.author}</p></blockquote>
-    
-  </Fragment>
-  ))}
+  {posts.map((post, index) => {
+  if (index > 0) return <Fragment></Fragment>
+  return (
+  <div class="quote">
+    <blockquote>
+      {post.frontmatter.text} <p>&mdash; {post.frontmatter.author}</p>
+    </blockquote>
+  </div>
+  )})}
 </Main>
 
 <style>
@@ -24,6 +27,10 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
     --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
     --link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
     --night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
+  }
+
+  .quote {
+    font-size: var(--font-size-lg)
   }
 
   h2 {
