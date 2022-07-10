@@ -9,14 +9,13 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/react": "^0.2.0",
-    "@astrojs/svelte": "^0.2.0",
-    "astro": "^1.0.0-beta.56",
+    "@astrojs/react": "^0.2.1",
+    "@astrojs/svelte": "^0.2.1",
+    "astro": "^1.0.0-beta.65",
+    "node-html-parser": "^5.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "svelte": "^3.48.0",
     "sass": "^1.53.0",
-    "node-html-parser": "^5.3.3"
-  },
-  "dependencies": {}
+    "svelte": "^3.49.0"
+  }
 }
