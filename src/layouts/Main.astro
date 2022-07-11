@@ -3,6 +3,8 @@ export interface Props {
   title: string;
 }
 
+import TopNav from "../components/TopNav.svelte"
+
 const { title } = Astro.props as Props;
 const { content } = Astro.props;
 ---
@@ -18,6 +20,7 @@ const { content } = Astro.props;
 </head>
 
 <body>
+  <TopNav />
   <div class="container">
   <slot />
   </div>  
@@ -44,7 +47,6 @@ const { content } = Astro.props;
 
   body {
     margin: 0;
-    text-align: center;
   }
 
   .container {
