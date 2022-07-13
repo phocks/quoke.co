@@ -14,6 +14,7 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
   if (index > 0) return <Fragment></Fragment>
   return (
   <div class="quote">
+    <div class="pre-mark">&ldquo;</div>
     <blockquote>
       {post.frontmatter.text} <p>&mdash; {post.frontmatter.author}</p>
     </blockquote>
@@ -21,7 +22,9 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
   )})}
 </Main>
 
-<style>
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
   :root {
     --color-border: hsl(17, 24%, 90%);
     --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
@@ -30,7 +33,18 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
   }
 
   .quote {
-    font-size: var(--font-size-lg)
+    font-size: var(--font-size-lg);
+
+    blockquote {
+      margin: 0;
+    }
+  }
+
+  .pre-mark {
+    font-family: "Work Sans";
+    font-size: 3em;
+    transform: translateY(0.33em);
+    color: #333;
   }
 
   h2 {
