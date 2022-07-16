@@ -20,15 +20,22 @@ const { content } = Astro.props;
 </head>
 
 <body>
-  <TopNav />
   <div class="container">
-  <slot />
-  </div>  
+    <slot />
+  </div>
 </body>
 
 </html>
 
-<style>
+<style lang="scss" is:global>
+  * {
+    box-sizing: border-box;
+  }
+</style>
+
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+
   :root {
     --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
     --font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
@@ -36,10 +43,17 @@ const { content } = Astro.props;
 
     --color-text: hsl(12, 5%, 4%);
     --color-bg: hsl(10, 21%, 95%);
+
+    --color-border: hsl(17, 24%, 90%);
+    --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
+    --link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
+    --night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
   }
 
+
+
   html {
-    font-family: system-ui, sans-serif;
+    font-family: 'IBM Plex Serif', serif;
     font-size: var(--font-size-base);
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -47,12 +61,6 @@ const { content } = Astro.props;
 
   body {
     margin: 0;
-  }
-
-  .container {
-    max-width: 700px;
-    margin: auto;
-    text-align: left;
   }
 
   :global(h1) {

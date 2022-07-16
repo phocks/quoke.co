@@ -3,170 +3,30 @@
 import type { QuoteFrontmatter } from '@lib/types';
 
 // Layout imports
-import Main from '../layouts/Main.astro';
+import Base from '../layouts/Base.astro';
+import Stack from "../layouts/Stack.astro"
+
+// Components
+
 
 
 const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 ---
 
-<Main title="Quoke / a few quotations">
-  {posts.map((post, index) => {
-  if (index > 0) return <Fragment></Fragment>
-  return (
-  <div class="quote">
-    <div class="pre-mark">&ldquo;</div>
-    <blockquote>
-      {post.frontmatter.text} <p>&mdash; {post.frontmatter.author}</p>
-    </blockquote>
-  </div>
-  )})}
-</Main>
+<Base title="Quoke &mdash; a few quotations">
+  <Stack> 
+
+<div class="quote">“The most wasted of days is one without laughter.” – E.E. Cummings</div>
+
+
+
+  </Stack>
+</Base>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
-
-  :root {
-    --color-border: hsl(17, 24%, 90%);
-    --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
-    --link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
-    --night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
-  }
-
   .quote {
-    font-size: var(--font-size-lg);
-
-    blockquote {
-      margin: 0;
-    }
-  }
-
-  .pre-mark {
-    font-family: "Work Sans";
-    font-size: 3em;
-    transform: translateY(0.33em);
-    color: #333;
-  }
-
-  h2 {
-    margin: 0;
-    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  h2 span {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  code {
-    font-size: 0.875em;
-    border: 0.1em solid var(--color-border);
-    border-radius: 4px;
-    padding: 0.15em 0.25em;
-  }
-
-  main {
-    margin: auto;
-    padding: 1em;
-    max-width: 60ch;
-  }
-
-  .text-gradient {
-    font-weight: 900;
-    background-image: var(--astro-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 100% 200%;
-    background-position-y: 100%;
-    border-radius: 0.4rem;
-    animation: pulse 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-
-    0%,
-    100% {
-      background-position-y: 0%;
-    }
-
-    50% {
-      background-position-y: 80%;
-    }
-  }
-
-  .instructions {
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    background-image: var(--night-sky-gradient);
-    padding: 1.5rem;
-    border-radius: 0.4rem;
-    color: var(--color-bg);
-  }
-
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
-
-  .link-card {
-    list-style: none;
-    display: flex;
-    padding: 0.15rem;
-    background-image: var(--link-gradient);
-    background-size: 400%;
-    border-radius: 0.5rem;
-    background-position: 100%;
-    transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .link-card>a {
-    width: 100%;
-    text-decoration: none;
-    line-height: 1.4;
-    padding: 1em 1.3em;
-    border-radius: 0.35rem;
-    color: var(--text-color);
-    background-color: white;
-    opacity: 0.8;
-  }
-
-  .link-card:is(:hover, :focus-within) {
-    background-position: 0;
-  }
-
-  .link-card:is(:hover, :focus-within) h2 {
-    color: #4F39FA;
-  }
-
-  .link-card:is(:hover, :focus-within) h2 span {
-    transform: translateX(2px);
-  }
-
-  .heart {
-    display: inline-block;
-    color: #DA62C4;
-    animation: heartbeat 3s ease-in-out infinite;
-  }
-
-  @keyframes heartbeat {
-
-    0%,
-    50%,
-    100% {
-      transform: scale(1);
-    }
-
-    5% {
-      transform: scale(1.125);
-    }
-
-    10% {
-      transform: scale(1.05);
-    }
-
-    15% {
-      transform: scale(1.25);
-    }
+    padding: 2rem;
+    width: 320px;
+    height: 320px;
   }
 </style>
