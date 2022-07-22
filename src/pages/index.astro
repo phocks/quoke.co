@@ -17,7 +17,8 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 {posts.map(post => (
 <div class="quote">
   <div class="text">{post.frontmatter.text}</div>
-  <div class="author">&mdash; {post.frontmatter.author}</div>
+  <div class="divider">&mdash;&mdash;</div>
+  <div class="author">{post.frontmatter.author}</div>
   <div class="source">{post.frontmatter.source}</div>
 </div>
 ))}
@@ -25,11 +26,15 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 
 <style lang="scss">
   .quote {
-    margin-bottom: 2em;
+    margin-bottom: 3em;
   }
 
-  .text {
-    margin-bottom: 1em;
+  .text {}
+
+  .divider {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    opacity: .2;
   }
 
   .author {
