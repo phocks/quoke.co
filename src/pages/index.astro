@@ -4,9 +4,9 @@ import type { QuoteFrontmatter } from '@lib/types';
 
 // Layout imports
 import Base from '../layouts/Base.astro';
-import Stack from "../layouts/Stack.astro"
 
-// Components
+
+
 
 
 
@@ -14,25 +14,11 @@ const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 ---
 
 <Base title="Quoke &mdash; a few quotations">
-<Stack>
-
-  <div class="quote">“The most wasted of days is one without laughter.” – E.E. Cummings</div>
-
-
-
-</Stack>
+  {posts.map(post => <div class="quote">{post.frontmatter.text}</div>)}
 </Base>
 
 <style lang="scss">
   .quote {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    margin: 1rem;
-    width: 320px;
-    height: 320px;
-    border: 1px solid #333;
-    // border-radius: 4px;
+    margin-bottom: 1em;
   }
 </style>
