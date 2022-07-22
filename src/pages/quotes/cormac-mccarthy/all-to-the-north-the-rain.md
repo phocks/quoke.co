@@ -5,7 +5,7 @@ text: All to the north the rain had dragged black tendrils down from the thunder
 author: Cormac McCarthy
 source: Blood Meridian
 dateAdded: 2021-01-21
-yearPublished: 1985
+datePublished: 1985
 topics:
   - Weather
   - Rain
