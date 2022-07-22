@@ -84,7 +84,19 @@ const { content } = Astro.props;
     padding-top: 1rem;
     padding-bottom: 1rem;
 
+    @include for-size(tablet-portrait-up) {
+      margin-left: 4rem;
+    }
+
+    @include for-size(tablet-landscape-up) {
+      margin-left:6rem;
+    }
+
     @include for-size(desktop-up) {
+      margin-left: 8rem;
+    }
+
+    @include for-size(big-desktop-up) {
       margin-left: 10rem;
     }
   }
