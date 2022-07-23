@@ -1,24 +1,8 @@
 ---
+import Base from "../../layouts/Base.astro";
 
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob('./**/*.md');
-
-  console.log(quotes);
-
-  
-
-  // const astronautPages = [{
-  //   astronaut: 'Neil Armstrong',
-  // }, {
-  //   astronaut: 'Buzz Aldrin',
-  // }, {
-  //   astronaut: 'Sally Ride',
-  // }, {
-  //   astronaut: 'John Glenn',
-  // }];
-  // // Generate pages from our array of astronauts, with 2 to a page
-  // return paginate(astronautPages, { pageSize: 2 });
-
 
   return paginate(quotes, { pageSize: 2 });
 }
@@ -27,12 +11,45 @@ const { page } = Astro.props;
 ---
 
 <!--Display the current page number. Astro.params.page can also be used!-->
-<h1>Page {page.currentPage}</h1>
+<!-- <h1>Page {page.currentPage}</h1>
 <ul>
-  <!--List the array of astronaut info-->
   {page.data.map(async (p) => {
   console.log("e", p.frontmatter);
   const {frontmatter} = p;
   return <li>{frontmatter.text}</li>
   })}
-</ul>
+</ul> -->
+
+<Base title="Quoke &mdash; a few quotations">
+  {page.data.map(post => (
+  <div class="quote">
+    <div class="text">{post.frontmatter.text}</div>
+    <div class="divider">&mdash;&mdash;</div>
+    <div class="author">{post.frontmatter.author}</div>
+    <div class="source">{post.frontmatter.source}</div>
+  </div>
+  ))}
+  </Base>
+  
+  <style lang="scss">
+    .quote {
+      margin-bottom: 3em;
+    }
+  
+    .text {}
+  
+    .divider {
+      margin-top: .5em;
+      margin-bottom: .5em;
+      opacity: .2;
+    }
+  
+    .author {
+      font-weight: bold;
+    }
+  
+    .source {
+      margin-top: .25em;
+      opacity: .7;
+    }
+  </style>

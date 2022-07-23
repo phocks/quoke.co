@@ -5,11 +5,6 @@ import type { QuoteFrontmatter } from '@lib/types';
 // Layout imports
 import Base from '../layouts/Base.astro';
 
-
-
-
-
-
 const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
 ---
 
