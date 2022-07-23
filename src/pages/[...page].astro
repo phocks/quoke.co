@@ -1,14 +1,19 @@
 ---
 import Base from "../layouts/Base.astro";
 import type { QuoteFrontmatter } from "@lib/types";
+import R from "ramda";
 
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
-  const sortedQuotes = quotes.sort((a, b) =>
-    a.frontmatter.dateAdded.localeCompare(b.frontmatter.dateAdded))
-    .reverse();
 
-  return paginate(quotes, { pageSize: 3 });
+  const propName = R.prop('name');
+
+  const diff = (a, b) =>
+    b.frontmatter.dateAdded.localeCompare(a.frontmatter.dateAdded);
+
+  const sortedQuotes = R.sort(diff, quotes);
+
+  return paginate(sortedQuotes, { pageSize: 3 });
 }
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
