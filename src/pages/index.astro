@@ -5,18 +5,22 @@ import type { QuoteFrontmatter } from '@lib/types';
 // Layout imports
 import Base from '../layouts/Base.astro';
 
-const posts = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
+const posts = await Astro.glob<QuoteFrontmatter>('./q/**/*.md');
 ---
 
+<head><meta http-equiv="refresh" content="0; url=/q/1" /></head>
+
 <Base title="Quoke &mdash; a few quotations">
-{posts.map(post => (
+
+<!-- {posts.map(post => (
 <div class="quote">
   <div class="text">{post.frontmatter.text}</div>
   <div class="divider">&mdash;&mdash;</div>
   <div class="author">{post.frontmatter.author}</div>
   <div class="source">{post.frontmatter.source}</div>
 </div>
-))}
+))} -->
+
 </Base>
 
 <style lang="scss">

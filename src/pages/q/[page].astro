@@ -10,16 +10,6 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 ---
 
-<!--Display the current page number. Astro.params.page can also be used!-->
-<!-- <h1>Page {page.currentPage}</h1>
-<ul>
-  {page.data.map(async (p) => {
-  console.log("e", p.frontmatter);
-  const {frontmatter} = p;
-  return <li>{frontmatter.text}</li>
-  })}
-</ul> -->
-
 <Base title="Quoke &mdash; a few quotations">
 {page.data.map(post => (
 <div class="quote">
