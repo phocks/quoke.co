@@ -21,35 +21,38 @@ const { page } = Astro.props;
 </ul> -->
 
 <Base title="Quoke &mdash; a few quotations">
-  {page.data.map(post => (
-  <div class="quote">
-    <div class="text">{post.frontmatter.text}</div>
-    <div class="divider">&mdash;&mdash;</div>
-    <div class="author">{post.frontmatter.author}</div>
-    <div class="source">{post.frontmatter.source}</div>
-  </div>
-  ))}
-  </Base>
-  
-  <style lang="scss">
-    .quote {
-      margin-bottom: 3em;
-    }
-  
-    .text {}
-  
-    .divider {
-      margin-top: .5em;
-      margin-bottom: .5em;
-      opacity: .2;
-    }
-  
-    .author {
-      font-weight: bold;
-    }
-  
-    .source {
-      margin-top: .25em;
-      opacity: .7;
-    }
-  </style>
+{page.data.map(post => (
+<div class="quote">
+  <div class="text">{post.frontmatter.text}</div>
+  <div class="divider">&mdash;&mdash;</div>
+  <div class="author">{post.frontmatter.author}</div>
+  <div class="source">{post.frontmatter.source}</div>
+</div>
+))}
+
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null} --
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
+</Base>
+
+<style lang="scss">
+  .quote {
+    margin-bottom: 3em;
+  }
+
+  .text {}
+
+  .divider {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    opacity: .2;
+  }
+
+  .author {
+    font-weight: bold;
+  }
+
+  .source {
+    margin-top: .25em;
+    opacity: .7;
+  }
+</style>
