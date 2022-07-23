@@ -7,5 +7,4 @@ source: Kafka on the Shore
 topics:
   - Perseverance
   - Life
-user: phocks
 ---

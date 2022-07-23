@@ -1,26 +1,27 @@
 ---
-// Type imports
-import type { QuoteFrontmatter } from '@lib/types';
+import Base from "../layouts/Base.astro";
 
-// Layout imports
-import Base from '../layouts/Base.astro';
+export async function getStaticPaths({ paginate }) {
+  const quotes = await Astro.glob('./quotes/**/*.md');
 
-const posts = await Astro.glob<QuoteFrontmatter>('./q/**/*.md');
+  return paginate(quotes, { pageSize: 3 });
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
 ---
 
-<head><meta http-equiv="refresh" content="0; url=/q/1" /></head>
-
 <Base title="Quoke &mdash; a few quotations">
-
-<!-- {posts.map(post => (
+{page.data.map(post => (
 <div class="quote">
   <div class="text">{post.frontmatter.text}</div>
   <div class="divider">&mdash;&mdash;</div>
   <div class="author">{post.frontmatter.author}</div>
   <div class="source">{post.frontmatter.source}</div>
 </div>
-))} -->
+))}
 
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null} --
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
 </Base>
 
 <style lang="scss">
