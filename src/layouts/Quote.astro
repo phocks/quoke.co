@@ -1,0 +1,106 @@
+---
+export interface Props {
+  title: string;
+  text: string;
+  content: any;
+}
+
+const { title, content, text } = Astro.props as Props;
+console.log(Astro.props);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>{title || content.title}</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-rule">-----</div>
+    <p>{content.text}</p>
+  </div>
+</body>
+
+</html>
+
+<style lang="scss" is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+</style>
+
+<style lang="scss">
+  @use "breakpoints" as *;
+  @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+  :root {
+    --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+    --font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
+    --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+
+    --color-text: hsl(12, 5%, 4%);
+    --color-bg: hsl(10, 21%, 95%);
+
+    --color-border: hsl(17, 24%, 90%);
+    --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
+    --link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
+    --night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
+  }
+
+  html {
+    font-family: 'Cutive Mono', monospace;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .top-rule {
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    max-width: 600px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    @include for-size(tablet-portrait-up) {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+
+    @include for-size(tablet-landscape-up) {
+      margin-left:6rem;
+    }
+
+    @include for-size(desktop-up) {
+      margin-left: 8rem;
+    }
+
+    @include for-size(big-desktop-up) {
+      margin-left: 10rem;
+    }
+  }
+</style>
