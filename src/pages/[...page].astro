@@ -25,7 +25,8 @@ export async function getStaticPaths({ paginate }) {
   // const sortedQuotes = (R.sort(diff, quotes));
   // const sortbyPath = (R.sortBy(R.path("frontmatter", "dateAdded")));
 
-  const sortByPath = R.pipe(R.path, R.sortBy)
+  const desc = a => -a;
+  const sortByPath = R.pipe(desc, R.path, R.sortBy)
   const sortByMostRecent = sortByPath(['frontmatter', 'dateAdded'])
 
   const sortedQuotes = sortByMostRecent(quotes);
