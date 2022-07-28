@@ -1,35 +1,12 @@
 ---
-import Base from "$layouts/Base.astro";
 import type { QuoteFrontmatter } from "$lib/types";
-import { MarkdownInstance } from "astro";
-import * as R from "ramda";
+
+import Base from "$layouts/Base.astro";
+import { sortQuotesDescendingByTime } from "$lib/sorting"
 
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
-
-  /** A comparitor function to pass to Ramda 
-   * @param {QuoteFrontmatter} a - The first quote to compare
-   * @param {QuoteFrontmatter} b - The second quote to compare
-  */
-  const diff = (
-    a: MarkdownInstance<QuoteFrontmatter>,
-    b: MarkdownInstance<QuoteFrontmatter>
-  ) => {
-    // TODO: Deal with missing dateAdded
-    const first = a.frontmatter.dateAdded
-    const second = b.frontmatter.dateAdded
-    console.log(first, second)
-    second.localeCompare(first);
-  }
-
-  // const sortedQuotes = (R.sort(diff, quotes));
-  // const sortbyPath = (R.sortBy(R.path("frontmatter", "dateAdded")));
-
-  const desc = a => -a;
-  const sortByPath = R.pipe(desc, R.path, R.sortBy)
-  const sortByMostRecent = sortByPath(['frontmatter', 'dateAdded'])
-
-  const sortedQuotes = sortByMostRecent(quotes);
+  const sortedQuotes = sortQuotesDescendingByTime(quotes);
   return paginate(sortedQuotes, { pageSize: 3 });
 }
 // All paginated data is passed on the "page" prop
@@ -46,8 +23,9 @@ const { page } = Astro.props;
 </div>
 ))}
 
-{page.url.prev ? <a href={page.url.prev}>Previous</a> : null} --
-{page.url.next ? <a href={page.url.next}>Next</a> : null}
+{page.url.prev && <a href={page.url.prev}>Previous</a>}
+{page.url.prev && page.url.next && <span> -- </span>}
+{page.url.next && <a href={page.url.next}>Next</a>}
 </Base>
 
 <style lang="scss">
