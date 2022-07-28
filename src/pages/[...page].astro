@@ -18,10 +18,17 @@ export async function getStaticPaths({ paginate }) {
     // TODO: Deal with missing dateAdded
     const first = a.frontmatter.dateAdded
     const second = b.frontmatter.dateAdded
+    console.log(first, second)
     second.localeCompare(first);
   }
 
-  const sortedQuotes = (R.sort(diff, quotes));
+  // const sortedQuotes = (R.sort(diff, quotes));
+  // const sortbyPath = (R.sortBy(R.path("frontmatter", "dateAdded")));
+
+  const sortByPath = R.pipe(R.path, R.sortBy)
+  const sortByMostRecent = sortByPath(['frontmatter', 'dateAdded'])
+
+  const sortedQuotes = sortByMostRecent(quotes);
   return paginate(sortedQuotes, { pageSize: 3 });
 }
 // All paginated data is passed on the "page" prop
