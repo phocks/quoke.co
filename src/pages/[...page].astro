@@ -7,8 +7,14 @@ import R from "ramda";
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
 
-
-  const diff = (a: MarkdownInstance<QuoteFrontmatter>, b: MarkdownInstance<QuoteFrontmatter>) => {
+  /** A comparitor function to pass to Ramda 
+   * @param {QuoteFrontmatter} a - The first quote to compare
+   * @param {QuoteFrontmatter} b - The second quote to compare
+  */
+  const diff = (
+    a: MarkdownInstance<QuoteFrontmatter>,
+    b: MarkdownInstance<QuoteFrontmatter>
+  ) => {
     // TODO: Deal with missing dateAdded
     const first = a.frontmatter.dateAdded
     const second = b.frontmatter.dateAdded
@@ -16,7 +22,6 @@ export async function getStaticPaths({ paginate }) {
   }
 
   const sortedQuotes = (R.sort(diff, quotes));
-
   return paginate(sortedQuotes, { pageSize: 3 });
 }
 // All paginated data is passed on the "page" prop
