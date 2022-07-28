@@ -1,17 +1,21 @@
 ---
-import Base from "@layouts/Base.astro";
-import type { QuoteFrontmatter } from "@lib/types";
+import Base from "$layouts/Base.astro";
+import type { QuoteFrontmatter } from "$lib/types";
+import { MarkdownInstance } from "astro";
 import R from "ramda";
 
 export async function getStaticPaths({ paginate }) {
-  const quotes = await Astro.glob<QuoteFrontmatter>('./quotes/**/*.md');
+  const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
 
-  const propName = R.prop('name');
 
-  const diff = (a, b) =>
-    b.frontmatter.dateAdded.localeCompare(a.frontmatter.dateAdded);
+  const diff = (a: MarkdownInstance<QuoteFrontmatter>, b: MarkdownInstance<QuoteFrontmatter>) => {
+    // TODO: Deal with missing dateAdded
+    const first = a.frontmatter.dateAdded
+    const second = b.frontmatter.dateAdded
+    second.localeCompare(first);
+  }
 
-  const sortedQuotes = R.sort(diff, quotes);
+  const sortedQuotes = (R.sort(diff, quotes));
 
   return paginate(sortedQuotes, { pageSize: 3 });
 }
