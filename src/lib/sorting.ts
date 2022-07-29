@@ -18,7 +18,7 @@ const diff = (
   const first = a.frontmatter.dateAdded;
   const second = b.frontmatter.dateAdded;
   const comparison = second.localeCompare(first);
-  return second.localeCompare(first);
+  return comparison;
 };
 
 /**
