@@ -17,9 +17,7 @@ const diff = (
   // TODO: Deal with missing dateAdded
   const first = a.frontmatter.dateAdded;
   const second = b.frontmatter.dateAdded;
-  console.log(first, second);
   const comparison = second.localeCompare(first);
-  console.log(comparison);
   return second.localeCompare(first);
 };
 
