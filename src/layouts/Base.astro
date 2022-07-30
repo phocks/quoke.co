@@ -15,6 +15,9 @@ const { content } = Astro.props;
   <meta name="viewport" content="width=device-width">
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <title>{title || content.title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -47,8 +50,7 @@ const { content } = Astro.props;
 </style>
 
 <style lang="scss">
-  @use "breakpoints" as *;
-  @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+  @use "../lib/css/breakpoints" as *;
 
   :root {
     --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -91,7 +93,7 @@ const { content } = Astro.props;
     }
 
     @include for-size(tablet-landscape-up) {
-      margin-left:6rem;
+      margin-left: 6rem;
     }
 
     @include for-size(desktop-up) {
