@@ -23,8 +23,12 @@ export const sortQuotesDescendingByTime = (
     b: MarkdownInstance<QuoteFrontmatter>
   ) => {
     // TODO: Deal with missing dateAdded values
-    const first = a.frontmatter.dateAdded;
+    const first = a?.frontmatter?.dateAdded;
+    if (!first) return 1;
+
     const second = b.frontmatter.dateAdded;
+    if (!second) return -1;
+
     const comparison = second.localeCompare(first);
     return comparison;
   };
