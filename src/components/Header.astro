@@ -1,0 +1,36 @@
+---
+console.log("Header processed!");
+---
+
+<div class="header">
+  <span class="item logo"><a href="/">Quoke</a></span>
+  <span class="item"><a href="/about">about</a></span>
+</div>
+
+<style lang="scss">
+  @use "../lib/css/breakpoints.scss" as *;
+
+  .header {
+    border-bottom: 1px solid rgb(32, 126, 126);
+    padding: 1rem;
+
+    @include for-size(tablet-portrait-up) {
+      padding: 2rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-text)
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .logo {
+      margin-right: 1rem;
+      font-weight: bold;
+    }
+
+  }
+</style>
