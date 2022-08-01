@@ -7,7 +7,7 @@ import { sortQuotesDescendingByTime } from "$lib/sorting"
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
   const sortedQuotes = sortQuotesDescendingByTime(quotes);
-  return paginate(sortedQuotes, { pageSize: 3 });
+  return paginate(sortedQuotes, { pageSize: 10 });
 }
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
@@ -42,7 +42,7 @@ const { page } = Astro.props;
   }
 
   .author {
-    font-weight: bold;
+    // font-weight: bold;
   }
 
   .source {

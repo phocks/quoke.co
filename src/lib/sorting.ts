@@ -22,7 +22,7 @@ export const sortQuotesDescendingByTime = (
     a: MarkdownInstance<QuoteFrontmatter>,
     b: MarkdownInstance<QuoteFrontmatter>
   ) => {
-    // TODO: Deal with missing dateAdded values
+    // TODO: Deal with missing dateAdded: values
     const first = a?.frontmatter?.dateAdded;
     if (!first) return 1;
 
