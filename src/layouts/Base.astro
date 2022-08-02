@@ -33,24 +33,7 @@ const { content } = Astro.props;
 
 </html>
 
-<style lang="scss" is:global>
-  * {
-    box-sizing: border-box;
-  }
 
-  h1 {
-    font-size: var(--font-size-xl);
-  }
-
-  h2 {
-    font-size: var(--font-size-lg);
-  }
-
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-      Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-</style>
 
 <style lang="scss">
   @use "../lib/css/breakpoints" as *;
@@ -90,6 +73,7 @@ const { content } = Astro.props;
     padding-right: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    margin-top: 2rem;
     margin-bottom: 6rem;
 
     @include for-size(tablet-portrait-up) {
@@ -108,5 +92,24 @@ const { content } = Astro.props;
     @include for-size(big-desktop-up) {
       margin-left: 10rem;
     }
+  }
+</style>
+
+<style lang="scss" is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
   }
 </style>
