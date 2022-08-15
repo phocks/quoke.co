@@ -1,8 +1,9 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import svelte from '@astrojs/svelte';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
-  site: "https://quoke.top"
+  integrations: [],
+  site: "https://quoke.co"
 });
