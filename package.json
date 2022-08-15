@@ -11,7 +11,7 @@
   "devDependencies": {
     "@astrojs/rss": "^0.2.2",
     "@types/ramda": "^0.28.15",
-    "astro": "^1.0.5",
+    "astro": "1.0.3",
     "node-html-parser": "^5.4.1",
     "ramda": "^0.28.0",
     "sass": "^1.54.4",
