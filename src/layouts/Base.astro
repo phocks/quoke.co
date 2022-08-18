@@ -25,8 +25,6 @@ const { content } = Astro.props;
 <body>
   <Header />
   <div class="container">
-    <!-- <div>QUOKE</div> -->
-    <!-- <div class="top-rule">---------</div> -->
     <slot />
   </div>
 </body>
@@ -51,6 +49,8 @@ const { content } = Astro.props;
     --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
     --link-gradient: linear-gradient(45deg, #4F39FA, #DA62C4 30%, var(--color-border) 60%);
     --night-sky-gradient: linear-gradient(0deg, #392362 -33%, #431f69 10%, #30216b 50%, #1f1638 100%);
+
+    --max-width: 700px;
   }
 
   html {
