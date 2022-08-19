@@ -19,11 +19,9 @@ const { content } = Astro.props;
   <title>{title || content.title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <Header />
   <div class="container">
     <slot />
   </div>
@@ -35,6 +33,7 @@ const { content } = Astro.props;
 
 <style lang="scss">
   @use "../lib/css/breakpoints" as *;
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 
   :root {
     --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -43,7 +42,6 @@ const { content } = Astro.props;
 
     --color-text: hsl(12, 5%, 4%);
     --color-bg: hsl(10, 21%, 95%);
-    // --color-bg: hsl(165, 61%, 80%);
 
     --color-border: hsl(17, 24%, 90%);
     --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
@@ -54,7 +52,7 @@ const { content } = Astro.props;
   }
 
   html {
-    font-family: 'Cutive Mono', monospace;
+    font-family: 'Fira Sans', sans-serif;
     color: var(--color-text);
     background-color: var(--color-bg);
   }
