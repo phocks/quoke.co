@@ -59,6 +59,7 @@ const { content } = Astro.props;
 
   body {
     margin: 0;
+    text-align: center;
   }
 
   .top-rule {
@@ -66,7 +67,9 @@ const { content } = Astro.props;
   }
 
   .container {
-    max-width: 600px;
+    text-align: left;
+    max-width: 800px;
+    margin: auto;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1rem;
@@ -74,22 +77,22 @@ const { content } = Astro.props;
     margin-top: 2rem;
     margin-bottom: 6rem;
 
-    @include for-size(tablet-portrait-up) {
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-    }
+    // @include for-size(tablet-portrait-up) {
+    //   margin-left: 1.5rem;
+    //   margin-right: 1.5rem;
+    // }
 
-    @include for-size(tablet-landscape-up) {
-      margin-left: 6rem;
-    }
+    // @include for-size(tablet-landscape-up) {
+    //   margin-left: 6rem;
+    // }
 
-    @include for-size(desktop-up) {
-      margin-left: 8rem;
-    }
+    // @include for-size(desktop-up) {
+    //   margin-left: 8rem;
+    // }
 
-    @include for-size(big-desktop-up) {
-      margin-left: 10rem;
-    }
+    // @include for-size(big-desktop-up) {
+    //   margin-left: 10rem;
+    // }
   }
 </style>
 

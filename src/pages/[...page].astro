@@ -1,8 +1,20 @@
 ---
 import type { QuoteFrontmatter } from "$lib/types";
 
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+dayjs.extend(calendar);
+const calendarDisplayOptions =  {
+  sameDay: "[Today at] h:mm A", // The same day ( Today at 2:30 AM )
+  nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
+  nextWeek: "dddd [at] h:mm A", // The next week ( Sunday at 2:30 AM )
+  lastDay: "[Yesterday at] h:mm A", // The day before ( Yesterday at 2:30 AM )
+  lastWeek: "[Last] dddd [at] h:mm A", // Last week ( Last Monday at 2:30 AM )
+  sameElse: "DD.MM.YYYY", // Everything else ( 17/10/2011 )
+};
+
 import Base from "$layouts/Base.astro";
-import { sortQuotesDescendingByTime } from "$lib/sorting"
+import { sortQuotesDescendingByTime } from "$lib/sorting";
 
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
@@ -13,16 +25,21 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 ---
 
-<Base title="Quoke &mdash; a few quotations">
-{page.data.map(post => (
-<div class="quote">
-  <div class="text">{post.frontmatter.text}</div>
-</div>
-))}
+<Base title="Quoke — a few quotations">
+  {
+    page.data.map((post) => (
+      <div class="quote">
+        <div class="from-now">
+          {dayjs().calendar(dayjs(post.frontmatter.dateAdded), calendarDisplayOptions)}
+        </div>
+        <div class="text">{post.frontmatter.text}</div>
+      </div>
+    ))
+  }
 
-{page.url.prev && <a href={page.url.prev}>Previous</a>}
-{page.url.prev && page.url.next && <span> -- </span>}
-{page.url.next && <a href={page.url.next}>Next</a>}
+  {page.url.prev && <a href={page.url.prev}>Previous</a>}
+  {page.url.prev && page.url.next && <span> -- </span>}
+  {page.url.next && <a href={page.url.next}>Next</a>}
 </Base>
 
 <style lang="scss">
@@ -30,12 +47,20 @@ const { page } = Astro.props;
     margin-bottom: 3em;
   }
 
-  .text {}
+  .from-now {
+    font-size: 1em;
+    color: #999;
+    margin-bottom: 0.5em;
+  }
+
+  .text {
+    font-size: 2em;
+  }
 
   .divider {
-    margin-top: .5em;
-    margin-bottom: .5em;
-    opacity: .2;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    opacity: 0.2;
   }
 
   .author {
@@ -43,7 +68,7 @@ const { page } = Astro.props;
   }
 
   .source {
-    margin-top: .25em;
-    opacity: .7;
+    margin-top: 0.25em;
+    opacity: 0.7;
   }
 </style>
