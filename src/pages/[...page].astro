@@ -4,7 +4,7 @@ import type { QuoteFrontmatter } from "$lib/types";
 import dayjs from "dayjs";
 import calendar from "dayjs/plugin/calendar";
 dayjs.extend(calendar);
-const calendarDisplayOptions =  {
+const calendarDisplayOptions = {
   sameDay: "[Today at] h:mm A", // The same day ( Today at 2:30 AM )
   nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
   nextWeek: "dddd [at] h:mm A", // The next week ( Sunday at 2:30 AM )
@@ -12,6 +12,10 @@ const calendarDisplayOptions =  {
   lastWeek: "[Last] dddd [at] h:mm A", // Last week ( Last Monday at 2:30 AM )
   sameElse: "DD.MM.YYYY", // Everything else ( 17/10/2011 )
 };
+
+function formatDate(date: string) {
+  return dayjs(date).calendar(null, calendarDisplayOptions);
+}
 
 import Base from "$layouts/Base.astro";
 import { sortQuotesDescendingByTime } from "$lib/sorting";
@@ -27,14 +31,16 @@ const { page } = Astro.props;
 
 <Base title="Quoke — a few quotations">
   {
-    page.data.map((post) => (
-      <div class="quote">
-        <div class="from-now">
-          {dayjs().calendar(dayjs(post.frontmatter.dateAdded), calendarDisplayOptions)}
+    page.data.map((post) => {
+      const { text, dateAdded } = post.frontmatter;
+
+      return (
+        <div class="quote">
+          <div class="from-now">{formatDate(dateAdded)}</div>
+          <div class="text">{text.substring(0, 200)}</div>
         </div>
-        <div class="text">{post.frontmatter.text}</div>
-      </div>
-    ))
+      );
+    })
   }
 
   {page.url.prev && <a href={page.url.prev}>Previous</a>}
