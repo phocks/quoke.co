@@ -4,7 +4,8 @@ import type { QuoteFrontmatter } from "$lib/types";
 import dayjs from "dayjs";
 import calendar from "dayjs/plugin/calendar";
 dayjs.extend(calendar);
-import { match, P } from "ts-pattern";
+import { match } from "ts-pattern";
+import Markdown from "@astrojs/markdown-component";
 
 const formatDate = (date: string) => {
   const calendarDisplayOptions = {
@@ -48,7 +49,9 @@ const { page } = Astro.props;
         <div class="quote">
           <div class="from-now">{formatDate(dateAdded)}</div>
           <div class="text">
-            <a href="#">{truncatedString(text, 128)}</a>
+            <a href="#">
+              <Markdown>{truncatedString(text, 128)}</Markdown>
+            </a>
           </div>
         </div>
       );
@@ -81,6 +84,10 @@ const { page } = Astro.props;
       text-decoration-color: #bbb;
       text-underline-offset: 0.1em;
       text-decoration-thickness: 1.4px;
+    }
+
+    p {
+      margin-top: 0.25em;
     }
   }
 

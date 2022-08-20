@@ -1,5 +1,6 @@
 ---
 import Header from "$components/Header.astro";
+import Footer from "$components/Footer.astro";
 
 export interface Props {
   title: string;
@@ -25,6 +26,7 @@ const { content } = Astro.props;
   <div class="container">
     <slot />
   </div>
+  <Footer />
 </body>
 
 </html>
@@ -42,6 +44,7 @@ const { content } = Astro.props;
 
     --color-text: hsl(12, 5%, 4%);
     --color-bg: hsl(10, 21%, 95%);
+    --color-bg-dark: #180d12;
 
     --color-border: hsl(17, 24%, 90%);
     --astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
@@ -54,12 +57,13 @@ const { content } = Astro.props;
   html {
     font-family: 'Fira Sans', sans-serif;
     color: var(--color-text);
-    background-color: var(--color-bg);
+    background-color: var(--color-bg-dark)
   }
 
   body {
     margin: 0;
     text-align: center;
+    background-color: var(--color-bg);
   }
 
   .top-rule {
@@ -72,10 +76,9 @@ const { content } = Astro.props;
     margin: auto;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+    margin-bottom: 200px;
 
     // @include for-size(tablet-portrait-up) {
     //   margin-left: 1.5rem;
