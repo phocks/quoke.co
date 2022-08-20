@@ -6,7 +6,7 @@ import calendar from "dayjs/plugin/calendar";
 dayjs.extend(calendar);
 import { match, P } from "ts-pattern";
 
-function formatDate(date: string) {
+const formatDate = (date: string) => {
   const calendarDisplayOptions = {
     sameDay: "[Today at] h:mm A", // The same day ( Today at 2:30 AM )
     nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
@@ -16,16 +16,15 @@ function formatDate(date: string) {
     sameElse: "DD.MM.YYYY", // Everything else ( 17/10/2011 )
   };
   return dayjs(date).calendar(null, calendarDisplayOptions);
-}
+};
 
-function truncatedString(string: string, length: number): string {
-  return match(string)
+const truncatedString = (string: string, length: number): string =>
+  match(string)
     .when(
       (s) => s.length > length,
       (s) => `${s.substring(0, length)}...`
     )
     .otherwise((s) => s);
-}
 
 import Base from "$layouts/Base.astro";
 import { sortQuotesDescendingByTime } from "$lib/sorting";
@@ -35,6 +34,7 @@ export async function getStaticPaths({ paginate }) {
   const sortedQuotes = sortQuotesDescendingByTime(quotes);
   return paginate(sortedQuotes, { pageSize: 10 });
 }
+
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
 ---
@@ -77,12 +77,10 @@ const { page } = Astro.props;
 
     a {
       color: inherit;
-      // text-decoration: none;
-      // border-bottom: 1px dotted #aaa;
       text-decoration-style: dotted;
-      text-decoration-color: #aaa;
+      text-decoration-color: #bbb;
       text-underline-offset: 0.1em;
-      text-decoration-thickness: 1.8px;
+      text-decoration-thickness: 1.4px;
     }
   }
 
