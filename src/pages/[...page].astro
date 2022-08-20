@@ -37,7 +37,7 @@ const { page } = Astro.props;
       return (
         <div class="quote">
           <div class="from-now">{formatDate(dateAdded)}</div>
-          <div class="text">{text.substring(0, 200)}</div>
+          <div class="text">{text.substring(0, 64)}</div>
         </div>
       );
     })
@@ -61,6 +61,9 @@ const { page } = Astro.props;
 
   .text {
     font-size: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .divider {
