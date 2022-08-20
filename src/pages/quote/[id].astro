@@ -1,0 +1,17 @@
+---
+import Base from "$layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob("../../lib/quotes/**/*.md");
+  const nonDraftPosts = posts.filter((post) => !post.frontmatter.draft);
+  console.log(posts[0].url);
+  return [{ params: { id: "1" } }, { params: { id: "2" } }];
+}
+
+const { id } = Astro.params;
+// console.log(id);
+---
+
+<Base title="Quote">
+  <div>test</div>
+</Base>

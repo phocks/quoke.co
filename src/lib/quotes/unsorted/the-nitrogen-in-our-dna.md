@@ -6,5 +6,4 @@ author: Carl Sagan
 topics:
   - Science
   - Stars
-user: phocks
 ---

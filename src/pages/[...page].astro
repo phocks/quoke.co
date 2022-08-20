@@ -7,6 +7,9 @@ dayjs.extend(calendar);
 import { match } from "ts-pattern";
 import Markdown from "@astrojs/markdown-component";
 
+import Base from "$layouts/Base.astro";
+import { sortQuotesDescendingByTime } from "$lib/sorting";
+
 const formatDate = (date: string) => {
   const calendarDisplayOptions = {
     sameDay: "[Today at] h:mm A", // The same day ( Today at 2:30 AM )
@@ -26,9 +29,6 @@ const truncatedString = (string: string, length: number): string =>
       (s) => `${s.substring(0, length)}...`
     )
     .otherwise((s) => s);
-
-import Base from "$layouts/Base.astro";
-import { sortQuotesDescendingByTime } from "$lib/sorting";
 
 export async function getStaticPaths({ paginate }) {
   const quotes = await Astro.glob<QuoteFrontmatter>("../lib/quotes/**/*.md");
