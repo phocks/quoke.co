@@ -1,6 +1,8 @@
 ---
 import { getSlugFromFilePath } from "$lib/paths";
+
 import Base from "$layouts/Base.astro";
+import Markdown from "@astrojs/markdown-component";
 
 export async function getStaticPaths() {
   const quotes = await Astro.glob("../../lib/quotes/**/*.md");
@@ -19,8 +21,20 @@ export async function getStaticPaths() {
   return staticPaths;
 }
 
-const { slug } = Astro.params;
+// const { slug } = Astro.params;
 const { quote } = Astro.props;
+const { frontmatter } = quote;
 ---
 
-<Base title="Quote">{quote.frontmatter.text}</Base>
+<Base title="Quote">
+  <div class="text">
+    <Markdown>{frontmatter.text}</Markdown>
+  </div>
+  <div>&mdash; {frontmatter.author}</div>
+</Base>
+
+<style lang="scss">
+  .text {
+    font-size: 1.3em;
+  }
+</style>
