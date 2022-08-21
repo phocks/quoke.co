@@ -1,25 +1,26 @@
 ---
+import { getSlugFromFilePath } from "$lib/paths";
 import Base from "$layouts/Base.astro";
 
 export async function getStaticPaths() {
-  function getSlugs(items) {
-    return items.map((item) => {
-      const { file } = item;
-      const slug = file.match(/[^\\/]+?(?=\.\w+$)/);
-      return slug[0];
-    });
-  }
+  const quotes = await Astro.glob("../../lib/quotes/**/*.md");
+  const nonDraftQuotes = quotes.filter((post) => !post.frontmatter.draft);
 
-  const posts = await Astro.glob("../../lib/quotes/**/*.md");
-  const nonDraftPosts = posts.filter((post) => !post.frontmatter.draft);
-  const slugs = getSlugs(nonDraftPosts);
-  return slugs.map((slug) => ({
-    params: { slug },
-  }));
+  const staticPaths = nonDraftQuotes.map((quote) => {
+    const { file } = quote;
+    const slug = getSlugFromFilePath(file);
+
+    return {
+      params: { slug },
+      props: { quote },
+    };
+  });
+
+  return staticPaths;
 }
 
 const { slug } = Astro.params;
-console.log(slug);
+const { quote } = Astro.props;
 ---
 
-<Base title="Quote">Hello!</Base>
+<Base title="Quote">{quote.frontmatter.text}</Base>
