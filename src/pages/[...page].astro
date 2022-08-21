@@ -60,9 +60,10 @@ const { page } = Astro.props;
     })
   }
 
-  {page.url.prev && <a href={page.url.prev}>Previous</a>}
-  {page.url.prev && page.url.next && <span> - </span>}
-  {page.url.next && <a href={page.url.next}>Next</a>}
+  <div class="page-navigation">
+    {page.url.prev && <a href={page.url.prev}>Previous</a>}
+    {page.url.next && <a href={page.url.next}>Next</a>}
+  </div>
 </Base>
 
 <style lang="scss">
@@ -99,12 +100,20 @@ const { page } = Astro.props;
     opacity: 0.2;
   }
 
-  .author {
-    // font-weight: bold;
-  }
-
   .source {
     margin-top: 0.25em;
     opacity: 0.7;
+  }
+
+  .page-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5em;
+    margin-bottom: 3em;
+
+    a {
+      color: #999;
+    }
   }
 </style>
