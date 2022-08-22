@@ -27,14 +27,21 @@ const { frontmatter } = quote;
 ---
 
 <Base title="Quote">
-  <div class="text">
-    <Markdown>{frontmatter.text}</Markdown>
+  <div class="single-quote">
+    <div class="text">
+      <Markdown>{frontmatter.text}</Markdown>
+    </div>
+    <div>&mdash; {frontmatter.author}</div>
   </div>
-  <div>&mdash; {frontmatter.author}</div>
 </Base>
 
 <style lang="scss">
+  .single-quote {
+    text-align: center;
+    font-size: 1.6em;
+
+  }
+
   .text {
-    font-size: 1.3em;
   }
 </style>

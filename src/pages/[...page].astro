@@ -61,7 +61,7 @@ const { page } = Astro.props;
   }
 
   <div class="page-navigation">
-    {page.url.prev && <a href={page.url.prev}>Previous</a>}
+    {page.url.prev ? <a href={page.url.prev}>Previous</a> : <div />}
     {page.url.next && <a href={page.url.next}>Next</a>}
   </div>
 </Base>
